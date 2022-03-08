@@ -1,5 +1,8 @@
 
 import { sanityClient, urlFor } from '../sanity'
+import Link from 'next/link'
+import { isMultiple } from '../utils'
+import DashboardMap from '../components/DashboardMap'
 
 const Home = ({ properties }) => {
 
@@ -12,13 +15,20 @@ const Home = ({ properties }) => {
         <h1>Places to stay near you</h1>
       <div className='feed'>
 
-        {properties.map((property, index) => (
-          <div className='card' key={property._id}>
+        {properties.map((property) => (
+          <Link href={`property/${property.slug.current}`}><div className='card' key={property._id}>
             <img src={urlFor(property.mainImage)} />
-          </div>
+            <p>{property.review.length} review{isMultiple(property.review.length)}</p>
+            <h3>{property.title}</h3>
+            <h3>{property.pricePerNight}/Per night</h3>
+          </div></Link>
         ))}
         </div>
+     
        </div> 
+       <div className='map'>
+          <DashboardMap properties={properties}/>
+          </div>
       </div>
     )}
     </>

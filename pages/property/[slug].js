@@ -29,7 +29,7 @@ const Property = ({ title,
         <div className="images-section">
             <Image identifier="main-image" image={mainImage} />
         <div className="sub-images-section">
-          {/* {images.map((image) =>   <Image identifier="image" image={image} />)} */}
+          {images.map((image) =>   <Image identifier="image" image={image} />)}
 
         </div>
         </div>
